@@ -1,5 +1,7 @@
 window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
+if (!SpeechRecognition) {
+    alert("SpeechRecognition not supported in your browser 😢");
+}
 const recognition = new SpeechRecognition();
 recognition.interimResults = true;
 
@@ -16,4 +18,5 @@ recognition.onerror = (e) => console.log("ERROR:", e.error);
 recognition.onend = () => console.log("Recognition ended");
 recognition.onresult = (e) => console.log("RESULT:", e);
 recognition.start();
+
 
