@@ -2,7 +2,7 @@ window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecogn
 
 const recognition = new SpeechRecognition();
 recognition.interimResults = true;
-
+recognition.lang = 'en-US';
 const words = document.querySelector("#words");
 let p = document.createElement("p");
 words.appendChild(p);
@@ -28,3 +28,4 @@ recognition.addEventListener("result", e => {
 recognition.addEventListener("end", recognition.start);
 
 recognition.start();
+
