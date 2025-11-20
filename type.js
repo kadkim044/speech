@@ -1,7 +1,5 @@
 window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-if (!SpeechRecognition) {
-    alert("SpeechRecognition not supported in your browser 😢");
-}
+
 const recognition = new SpeechRecognition();
 recognition.interimResults = true;
 
@@ -12,11 +10,16 @@ words.appendChild(p);
 
 recognition.addEventListener("result", e => {
     console.log(e);
+    const transcript = Array.from(e.results)
+    .map(result=>result[0])//
+    .map(result=>result.transcript)
+    .join("");
+    p.textContent=transcript;
+    if(e.results[0].isFinal){
+        p=document.createElement("p");
+        words.appendChild(p)
+    }
 });
-recognition.onstart = () => console.log("Recognition started");
-recognition.onerror = (e) => console.log("ERROR:", e.error);
-recognition.onend = () => console.log("Recognition ended");
-recognition.onresult = (e) => console.log("RESULT:", e);
+recognition.addEventListener("end",recognition.start)
+
 recognition.start();
-
-
