@@ -25,7 +25,8 @@ recognition.addEventListener("result", e => {
 });
 
 // Restart recognition automatically
-recognition.addEventListener("end", recognition.start);
+recognition.addEventListener("end", recognition.start());
 
 recognition.start();
+
 
